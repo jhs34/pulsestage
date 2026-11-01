@@ -135,18 +135,18 @@ export const BoothHud: React.FC<BoothHudProps> = ({
     <>
       {/* Top Minimal Monochrome Header Bar (Responsive for Mobile & Desktop) */}
       <header
-        className={`fixed top-0 inset-x-0 z-30 flex items-center justify-between gap-2 sm:gap-8 px-3.5 sm:px-6 py-2.5 sm:py-3.5 transition-colors duration-200 ${
+        className={`fixed top-0 inset-x-0 z-30 flex items-center justify-between gap-2 sm:gap-8 px-2.5 sm:px-6 py-1.5 sm:py-3.5 transition-colors duration-200 ${
           isWhiteout
             ? 'bg-[#08080a]/95 text-neutral-100 border-b border-neutral-800'
             : 'bg-[#060608]/88 text-neutral-100 border-b border-white/[0.08]'
         }`}
       >
         {/* Zone 1: Brand Wordmark + Mobile Theme Status Pill */}
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div className="text-sm sm:text-base font-bold tracking-tight font-display text-white whitespace-nowrap shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+          <div className="text-xs sm:text-base font-bold tracking-tight font-display text-white whitespace-nowrap shrink-0">
             PULSE STAGE
           </div>
-          <span className="md:hidden inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white/[0.06] border border-white/10 text-[11px] text-neutral-300 truncate">
+          <span className="md:hidden inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-[10px] text-neutral-300 truncate">
             <strong className="text-white font-mono">#{activeTheme}</strong>
             <span className="truncate">{currentThemeMeta.shortLabel}</span>
           </span>
@@ -202,17 +202,17 @@ export const BoothHud: React.FC<BoothHudProps> = ({
         </nav>
 
         {/* Zone 3: Primary Actions — Fullscreen & Hide UI */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
           <button
             type="button"
             onClick={onToggleFullscreen}
             aria-label={isFullscreen ? '전체화면 종료 (F)' : '전체화면 전환 (F)'}
-            className="px-2.5 sm:px-3 py-1.5 text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
+            className="px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 rounded-md sm:rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
           >
             {isFullscreen ? (
-              <Minimize2 className="w-3.5 h-3.5" />
+              <Minimize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             ) : (
-              <Maximize2 className="w-3.5 h-3.5" />
+              <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             )}
             <span className="hidden sm:inline">전체화면 (F)</span>
           </button>
@@ -220,9 +220,9 @@ export const BoothHud: React.FC<BoothHudProps> = ({
             type="button"
             onClick={onToggleUiVisible}
             aria-label="컨트롤 UI 숨기기 (단축키 H)"
-            className="px-2.5 sm:px-3.5 py-1.5 text-xs font-semibold text-neutral-950 bg-white hover:bg-neutral-200 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
+            className="px-2 sm:px-3.5 py-1 sm:py-1.5 text-[11px] sm:text-xs font-semibold text-neutral-950 bg-white hover:bg-neutral-200 rounded-md sm:rounded-lg transition-colors flex items-center gap-1 sm:gap-1.5 whitespace-nowrap shrink-0"
           >
-            <EyeOff className="w-3.5 h-3.5" />
+            <EyeOff className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span className="hidden sm:inline">UI 숨기기 (H)</span>
             <span className="sm:hidden">숨기기</span>
           </button>
@@ -232,92 +232,92 @@ export const BoothHud: React.FC<BoothHudProps> = ({
       {/* Bottom Interactive Monochrome DJ Console Dock */}
       <section
         aria-label="DJ 비주얼 및 조명 컨트롤 패널"
-        onMouseEnter={(e) => {
+        onMouseEnter={() => {
           // Only trigger hover auto-open for fine mouse pointers (desktop)
           if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
             setIsHovered(true);
           }
         }}
         onMouseLeave={() => setIsHovered(false)}
-        className="fixed bottom-2 sm:bottom-4 inset-x-0 z-30 flex justify-center px-2.5 sm:px-4 pointer-events-none"
+        className="fixed bottom-1.5 sm:bottom-4 inset-x-0 z-30 flex justify-center px-1.5 sm:px-4 pointer-events-none"
       >
         <div
-          className={`w-full max-w-[1220px] pointer-events-auto rounded-xl border transition-colors duration-200 ${
+          className={`w-full max-w-[1220px] pointer-events-auto rounded-lg sm:rounded-xl border transition-colors duration-200 ${
             isWhiteout
               ? 'bg-[#08080a]/96 border-neutral-800 text-neutral-100 shadow-2xl'
               : 'bg-[#070709]/94 border-white/12 text-neutral-100 shadow-2xl'
-          } p-2.5 sm:p-4`}
+          } p-1.5 sm:p-4`}
         >
           {/* Expandable Detailed Controls Drawer (Hover on Desktop, Tap Toggle on Mobile) */}
           <div
             className={
               showDetails
-                ? 'block opacity-100 mb-2.5 sm:mb-4 pb-2.5 sm:pb-4 border-b border-white/10'
+                ? 'block opacity-100 mb-1.5 sm:mb-4 pb-1.5 sm:pb-4 border-b border-white/10'
                 : 'hidden opacity-0'
             }
           >
             {/* Mobile Segmented Tab Switcher (Visible below lg so mobile stays compact) */}
-            <div className="flex lg:hidden items-center gap-1 p-1 mb-2.5 rounded-lg bg-neutral-900 border border-white/10">
+            <div className="flex lg:hidden items-center gap-1 p-0.5 mb-1.5 rounded-md bg-neutral-900 border border-white/10">
               <button
                 type="button"
                 onClick={() => setMobileTab('fade')}
-                className={`flex-1 py-1.5 px-1.5 rounded-md text-[11px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1 whitespace-nowrap ${
+                className={`flex-1 py-1 px-1 rounded text-[10px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1 whitespace-nowrap ${
                   mobileTab === 'fade'
                     ? 'bg-white text-neutral-950'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                <Sparkles className="w-3 h-3 shrink-0" />
+                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
                 <span>페이드 (Q~P)</span>
               </button>
               <button
                 type="button"
                 onClick={() => setMobileTab('bpm')}
-                className={`flex-1 py-1.5 px-1.5 rounded-md text-[11px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1 whitespace-nowrap ${
+                className={`flex-1 py-1 px-1 rounded text-[10px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1 whitespace-nowrap ${
                   mobileTab === 'bpm'
                     ? 'bg-white text-neutral-950'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                <Activity className="w-3 h-3 shrink-0" />
+                <Activity className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
                 <span>BPM · 벤드</span>
               </button>
               <button
                 type="button"
                 onClick={() => setMobileTab('strobe')}
-                className={`flex-1 py-1.5 px-1.5 rounded-md text-[11px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1 whitespace-nowrap ${
+                className={`flex-1 py-1 px-1 rounded text-[10px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1 whitespace-nowrap ${
                   mobileTab === 'strobe'
                     ? 'bg-white text-neutral-950'
                     : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                <Zap className="w-3 h-3 shrink-0" />
+                <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
                 <span>스트로브 · 모드</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-stretch">
               {/* Left Column: QWERTY White Fade Pad (Q ~ P: 100ms ~ 1000ms) */}
               <div
                 className={`${
                   mobileTab === 'fade' ? 'flex' : 'hidden lg:flex'
-                } lg:col-span-5 flex-col justify-between bg-white/[0.025] border border-white/[0.08] rounded-lg p-3 sm:p-3.5`}
+                } lg:col-span-5 flex-col justify-between bg-white/[0.025] border border-white/[0.08] rounded-md sm:rounded-lg p-2 sm:p-3.5`}
               >
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-1.5 min-w-0">
-                    <Sparkles className="w-3.5 h-3.5 text-neutral-300 shrink-0" />
-                    <span className="text-xs font-semibold text-neutral-200 whitespace-nowrap">
+                <div className="flex items-center justify-between gap-2 mb-1.5 sm:mb-2">
+                  <div className="flex items-center gap-1 min-w-0">
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-300 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-semibold text-neutral-200 whitespace-nowrap">
                       화이트 페이드 조명 (Q ~ P)
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono tabular-nums text-neutral-400 whitespace-nowrap shrink-0">
+                  <span className="text-[10px] sm:text-[11px] font-mono tabular-nums text-neutral-400 whitespace-nowrap shrink-0">
                     {activeFadeDurationMs
                       ? `활성: ${activeFadeKey} (${activeFadeDurationMs}ms)`
                       : '100ms → 1000ms'}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5">
+                <div className="grid grid-cols-5 sm:grid-cols-10 gap-1 sm:gap-1.5">
                   {QWERTY_FADE_KEYS.map((item) => {
                     const isTriggered = activeFadeKey === item.key && lightLevel > 0.05;
                     return (
@@ -336,17 +336,17 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                         }}
                         onContextMenu={(e) => e.preventDefault()}
                         aria-label={`화이트 페이드 ${item.key}키 (${item.durationMs}ms)`}
-                        className={`flex flex-col items-center justify-center min-h-[42px] sm:min-h-0 py-2 px-1 rounded-md border text-center transition-all touch-none select-none ${
+                        className={`flex flex-col items-center justify-center min-h-[30px] sm:min-h-0 py-1 sm:py-2 px-1 rounded border text-center transition-all touch-none select-none ${
                           isTriggered
                             ? 'bg-white text-neutral-950 border-white font-bold scale-[1.03]'
                             : 'bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-700 text-neutral-200 border-white/10'
                         }`}
                       >
-                        <span className="text-xs font-mono font-bold leading-none">
+                        <span className="text-[11px] sm:text-xs font-mono font-bold leading-none">
                           {item.key}
                         </span>
                         <span
-                          className={`text-[10px] font-mono tabular-nums mt-1 leading-none ${
+                          className={`text-[9px] sm:text-[10px] font-mono tabular-nums mt-0.5 sm:mt-1 leading-none ${
                             isTriggered ? 'text-neutral-800' : 'text-neutral-500'
                           }`}
                         >
@@ -362,25 +362,25 @@ export const BoothHud: React.FC<BoothHudProps> = ({
               <div
                 className={`${
                   mobileTab === 'strobe' ? 'flex' : 'hidden lg:flex'
-                } lg:col-span-3 flex-col justify-between bg-white/[0.025] border border-white/[0.08] rounded-lg p-3 sm:p-3.5`}
+                } lg:col-span-3 flex-col justify-between bg-white/[0.025] border border-white/[0.08] rounded-md sm:rounded-lg p-2 sm:p-3.5`}
               >
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5 text-neutral-300 shrink-0" />
-                    <span className="text-xs font-semibold text-neutral-200">
+                <div className="flex items-center justify-between gap-2 mb-1.5 sm:mb-2">
+                  <div className="flex items-center gap-1">
+                    <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-300 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-semibold text-neutral-200">
                       점멸 스트로브 & 조명 모드
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono tabular-nums text-neutral-200">
+                  <span className="text-[10px] sm:text-[11px] font-mono tabular-nums text-neutral-200">
                     {strobeRateHz} Hz
                   </span>
                 </div>
 
                 {/* Strobe Speed Slider */}
-                <div className="flex items-center gap-2.5 my-1.5">
+                <div className="flex items-center gap-2 my-1">
                   <label
                     htmlFor="strobe-rate-slider"
-                    className="text-[11px] text-neutral-400 whitespace-nowrap shrink-0"
+                    className="text-[10px] sm:text-[11px] text-neutral-400 whitespace-nowrap shrink-0"
                   >
                     점멸 속도
                   </label>
@@ -392,16 +392,16 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     step={1}
                     value={strobeRateHz}
                     onChange={(e) => onChangeStrobeRateHz(Number(e.target.value))}
-                    className="w-full accent-white cursor-pointer h-2 bg-neutral-800 rounded-lg"
+                    className="w-full accent-white cursor-pointer h-1.5 sm:h-2 bg-neutral-800 rounded-lg"
                   />
                 </div>
 
                 {/* Lighting Style Switcher (Bloom vs Geometry Overdrive) */}
-                <div className="grid grid-cols-2 gap-1.5 mt-2">
+                <div className="grid grid-cols-2 gap-1 sm:gap-1.5 mt-1.5 sm:mt-2">
                   <button
                     type="button"
                     onClick={() => onChangeLightingMode('bloom')}
-                    className={`py-2 sm:py-1.5 px-2.5 rounded-md text-xs font-medium border transition-colors whitespace-nowrap shrink-0 ${
+                    className={`py-1 sm:py-1.5 px-2 rounded text-[11px] sm:text-xs font-medium border transition-colors whitespace-nowrap shrink-0 ${
                       lightingMode === 'bloom'
                         ? 'bg-white text-neutral-950 border-white font-semibold'
                         : 'bg-neutral-900 border-white/10 text-neutral-400 hover:text-neutral-200'
@@ -412,7 +412,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                   <button
                     type="button"
                     onClick={() => onChangeLightingMode('overdrive')}
-                    className={`py-2 sm:py-1.5 px-2.5 rounded-md text-xs font-medium border transition-colors whitespace-nowrap shrink-0 ${
+                    className={`py-1 sm:py-1.5 px-2 rounded text-[11px] sm:text-xs font-medium border transition-colors whitespace-nowrap shrink-0 ${
                       lightingMode === 'overdrive'
                         ? 'bg-white text-neutral-950 border-white font-semibold'
                         : 'bg-neutral-900 border-white/10 text-neutral-400 hover:text-neutral-200'
@@ -427,22 +427,22 @@ export const BoothHud: React.FC<BoothHudProps> = ({
               <div
                 className={`${
                   mobileTab === 'bpm' ? 'flex' : 'hidden lg:flex'
-                } lg:col-span-4 flex-col justify-between bg-white/[0.025] border border-white/[0.08] rounded-lg p-3 sm:p-3.5`}
+                } lg:col-span-4 flex-col justify-between bg-white/[0.025] border border-white/[0.08] rounded-md sm:rounded-lg p-2 sm:p-3.5`}
               >
-                <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <div className="flex items-center gap-1.5">
-                    <Activity className="w-3.5 h-3.5 text-neutral-300 shrink-0" />
-                    <span className="text-xs font-semibold text-neutral-200">
+                <div className="flex items-center justify-between gap-1.5 mb-1.5 sm:mb-2.5">
+                  <div className="flex items-center gap-1 min-w-0">
+                    <Activity className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-neutral-300 shrink-0" />
+                    <span className="text-[11px] sm:text-xs font-semibold text-neutral-200 truncate">
                       BPM & 비트매칭 (피치벤드)
                     </span>
                   </div>
 
                   {/* Auto BPM vs Manual Off Toggle */}
-                  <div className="flex items-center p-0.5 bg-neutral-900 border border-white/10 rounded-md">
+                  <div className="flex items-center p-0.5 bg-neutral-900 border border-white/10 rounded shrink-0">
                     <button
                       type="button"
                       onClick={() => onToggleAutoBpm(true)}
-                      className={`px-2 py-1 sm:py-0.5 text-[11px] font-medium rounded transition-colors whitespace-nowrap shrink-0 ${
+                      className={`px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-medium rounded transition-colors whitespace-nowrap shrink-0 ${
                         autoBpm
                           ? 'bg-white text-neutral-950 font-semibold'
                           : 'text-neutral-400 hover:text-neutral-200'
@@ -453,7 +453,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     <button
                       type="button"
                       onClick={() => onToggleAutoBpm(false)}
-                      className={`px-2 py-1 sm:py-0.5 text-[11px] font-medium rounded transition-colors whitespace-nowrap shrink-0 ${
+                      className={`px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-medium rounded transition-colors whitespace-nowrap shrink-0 ${
                         !autoBpm
                           ? 'bg-white text-neutral-950 font-semibold'
                           : 'text-neutral-400 hover:text-neutral-200'
@@ -465,7 +465,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                 </div>
 
                 {/* Direct BPM Numeric Input + -1/+1 Step + Tap + Sync + Pitch Bend (- / +) */}
-                <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 mt-0.5">
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
@@ -474,7 +474,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                       }
                       aria-label="BPM 1 감소 (아래 화살표)"
                       title="BPM -1 (↓ 화살표)"
-                      className="px-2 py-2 sm:py-1.5 rounded-md bg-neutral-900 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border border-white/15 font-mono text-xs font-bold text-neutral-200 transition-colors shrink-0 select-none"
+                      className="px-1.5 sm:px-2 py-1 sm:py-1.5 rounded bg-neutral-900 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border border-white/15 font-mono text-[11px] sm:text-xs font-bold text-neutral-200 transition-colors shrink-0 select-none"
                     >
                       -1
                     </button>
@@ -498,7 +498,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                             (e.target as HTMLInputElement).blur();
                           }
                         }}
-                        className="w-14 py-2 sm:py-1.5 px-1.5 rounded-md bg-neutral-900 border border-white/15 text-sm font-mono font-bold tabular-nums text-white text-center focus:outline-none focus:border-white"
+                        className="w-11 sm:w-14 py-1 sm:py-1.5 px-1 rounded bg-neutral-900 border border-white/15 text-xs sm:text-sm font-mono font-bold tabular-nums text-white text-center focus:outline-none focus:border-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
                     </div>
                     <button
@@ -508,7 +508,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                       }
                       aria-label="BPM 1 증가 (위 화살표)"
                       title="BPM +1 (↑ 화살표)"
-                      className="px-2 py-2 sm:py-1.5 rounded-md bg-neutral-900 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border border-white/15 font-mono text-xs font-bold text-neutral-200 transition-colors shrink-0 select-none"
+                      className="px-1.5 sm:px-2 py-1 sm:py-1.5 rounded bg-neutral-900 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border border-white/15 font-mono text-[11px] sm:text-xs font-bold text-neutral-200 transition-colors shrink-0 select-none"
                     >
                       +1
                     </button>
@@ -526,7 +526,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     onPointerCancel={onPitchBendEnd}
                     onContextMenu={(e) => e.preventDefault()}
                     aria-label="피치벤드 감속 (- 버튼 홀드 또는 [ 키)"
-                    className={`px-2 py-2 sm:py-1.5 rounded-md border font-mono text-xs font-bold transition-colors whitespace-nowrap shrink-0 touch-none select-none ${
+                    className={`px-1.5 sm:px-2 py-1 sm:py-1.5 rounded border font-mono text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap shrink-0 touch-none select-none ${
                       pitchBend === -1
                         ? 'bg-white text-neutral-950 border-white'
                         : 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border-white/10'
@@ -547,7 +547,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     onPointerCancel={onPitchBendEnd}
                     onContextMenu={(e) => e.preventDefault()}
                     aria-label="피치벤드 가속 (+ 버튼 홀드 또는 ] 키)"
-                    className={`px-2 py-2 sm:py-1.5 rounded-md border font-mono text-xs font-bold transition-colors whitespace-nowrap shrink-0 touch-none select-none ${
+                    className={`px-1.5 sm:px-2 py-1 sm:py-1.5 rounded border font-mono text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap shrink-0 touch-none select-none ${
                       pitchBend === 1
                         ? 'bg-white text-neutral-950 border-white'
                         : 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border-white/10'
@@ -567,7 +567,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                       if (e.detail === 0) onTapTempo();
                     }}
                     aria-label="탭 템포 (박자에 맞춰 터치/클릭)"
-                    className="px-2 py-2 sm:py-1.5 rounded-md bg-neutral-900 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border border-white/10 text-xs font-semibold text-neutral-200 transition-colors whitespace-nowrap shrink-0 touch-none select-none"
+                    className="px-1.5 sm:px-2 py-1 sm:py-1.5 rounded bg-neutral-900 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border border-white/10 text-[11px] sm:text-xs font-semibold text-neutral-200 transition-colors whitespace-nowrap shrink-0 touch-none select-none"
                   >
                     TAP
                   </button>
@@ -583,9 +583,9 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                       if (e.detail === 0) onSyncBeat();
                     }}
                     aria-label="박자 정박 싱크 맞추기 (Enter)"
-                    className="px-2 py-2 sm:py-1.5 rounded-md bg-white/10 hover:bg-white/20 active:bg-white active:text-neutral-950 border border-white/20 text-xs font-semibold text-white transition-colors flex items-center justify-center gap-1 whitespace-nowrap shrink-0 touch-none select-none"
+                    className="px-1.5 sm:px-2 py-1 sm:py-1.5 rounded bg-white/10 hover:bg-white/20 active:bg-white active:text-neutral-950 border border-white/20 text-[11px] sm:text-xs font-semibold text-white transition-colors flex items-center justify-center gap-1 whitespace-nowrap shrink-0 touch-none select-none"
                   >
-                    <RotateCcw className="w-3 h-3" />
+                    <RotateCcw className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                     <span>SYNC</span>
                   </button>
                 </div>
@@ -594,8 +594,8 @@ export const BoothHud: React.FC<BoothHudProps> = ({
           </div>
 
           {/* Always-Visible Primary Strip: Theme 0~9 Selector + Space Strobe Hold + Live BPM (-1/+1) + Pad Toggle */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2">
-            {/* Theme 0..9 Buttons: 5x2 Grid on Mobile (<sm) so all 10 themes fit without scrolling, Single Row on sm+ */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-1.5 sm:gap-2">
+            {/* Theme 0..9 Buttons: Compact 5x2 Grid on Mobile (<sm) so all 10 themes fit cleanly, Single Row on sm+ */}
             <div className="grid grid-cols-5 sm:flex sm:items-center gap-1 py-0.5">
               {([0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as ThemeId[]).map((id) => {
                 const t = THEMES[id];
@@ -607,27 +607,27 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     onClick={() => onSelectTheme(id)}
                     aria-label={`배경 테마 ${id}번: ${t.nameKo}`}
                     aria-pressed={isSelected}
-                    className={`group relative flex items-center justify-center sm:justify-start gap-1 px-1.5 sm:px-2 py-2 sm:py-1.5 rounded-lg border text-xs font-medium transition-all whitespace-nowrap shrink-0 ${
+                    className={`group relative flex items-center justify-center sm:justify-start gap-0.5 sm:gap-1 px-1 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg border text-[11px] sm:text-xs font-medium transition-all whitespace-nowrap shrink-0 ${
                       isSelected
                         ? 'bg-white text-neutral-950 border-white font-semibold shadow-sm'
                         : 'bg-white/[0.03] hover:bg-white/[0.08] active:bg-white/[0.15] text-neutral-300 border-white/10'
                     }`}
                   >
                     <span
-                      className={`font-mono font-bold text-xs tabular-nums ${
+                      className={`font-mono font-bold text-[11px] sm:text-xs tabular-nums ${
                         isSelected ? 'text-neutral-950' : 'text-white'
                       }`}
                     >
                       {id}
                     </span>
-                    <span className="text-[11px] truncate">{t.shortLabel}</span>
+                    <span className="text-[10px] sm:text-[11px] truncate">{t.shortLabel}</span>
                   </button>
                 );
               })}
             </div>
 
             {/* Right Status & Spacebar Strobe Hold Trigger + Live BPM (-1 / +1) + Expand Pad Toggle */}
-            <div className="flex items-center justify-between lg:justify-end gap-1.5 sm:gap-2 lg:ml-auto shrink-0">
+            <div className="flex items-center justify-between lg:justify-end gap-1 sm:gap-2 lg:ml-auto w-full lg:w-auto min-w-0">
               {/* Spacebar / Touch Strobe Hold Button */}
               <button
                 type="button"
@@ -640,19 +640,19 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                 onPointerCancel={() => onStrobeHoldChange(false)}
                 onContextMenu={(e) => e.preventDefault()}
                 aria-label="화이트 점멸 스트로브 (스페이스바 또는 터치 홀드)"
-                className={`flex-1 lg:flex-none justify-center px-3 py-2.5 sm:py-2 rounded-lg border text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 touch-none select-none ${
+                className={`flex-1 lg:flex-none justify-center px-2 sm:px-3 py-1.5 sm:py-2 rounded-md sm:rounded-lg border text-[11px] sm:text-xs font-semibold transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap min-w-0 touch-none select-none ${
                   strobeHeld
                     ? 'bg-white text-neutral-950 border-white shadow-lg scale-[1.01]'
                     : 'bg-white/[0.06] hover:bg-white/[0.11] text-neutral-200 border-white/15'
                 }`}
               >
-                <Zap className="w-3.5 h-3.5 text-current shrink-0" />
+                <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-current shrink-0" />
                 <span className="hidden sm:inline">STROBE (SPACE 홀드)</span>
-                <span className="sm:hidden">STROBE (홀드)</span>
+                <span className="sm:hidden truncate">STROBE</span>
               </button>
 
               {/* Live Effective BPM & Quick -1 / +1 Buttons */}
-              <div className="flex items-center rounded-lg bg-neutral-900 border border-white/10 overflow-hidden shrink-0">
+              <div className="flex items-center rounded-md sm:rounded-lg bg-neutral-900 border border-white/10 overflow-hidden shrink-0">
                 <button
                   type="button"
                   data-testid="bpm-minus-one"
@@ -661,7 +661,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                   }
                   aria-label="BPM -1 감소 (아래 화살표)"
                   title="BPM -1 (↓ 화살표)"
-                  className="px-2 py-2 sm:py-1.5 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border-r border-white/10 font-mono text-xs font-bold text-neutral-200 transition-colors select-none"
+                  className="px-1.5 sm:px-2 py-1.5 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border-r border-white/10 font-mono text-[11px] sm:text-xs font-bold text-neutral-200 transition-colors select-none"
                 >
                   -1
                 </button>
@@ -671,14 +671,14 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     setMobileTab('bpm');
                     setIsPinnedOpen((v) => !v);
                   }}
-                  className="flex items-center gap-2 px-2.5 py-1.5 hover:bg-neutral-800 text-left transition-colors"
+                  className="flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2.5 py-1 sm:py-1.5 hover:bg-neutral-800 text-left transition-colors"
                   title="클릭하거나 마우스를 올리면 BPM 및 피치벤드 세부 설정이 열립니다"
                 >
-                  <div className="flex items-center gap-1" aria-label={`현재 박자 ${beatIndex + 1}/4`}>
+                  <div className="flex items-center gap-0.5 sm:gap-1" aria-label={`현재 박자 ${beatIndex + 1}/4`}>
                     {[0, 1, 2, 3].map((b) => (
                       <span
                         key={b}
-                        className={`w-1.5 h-3.5 rounded-sm transition-colors ${
+                        className={`w-1 sm:w-1.5 h-2.5 sm:h-3.5 rounded-sm transition-colors ${
                           autoBpm && beatIndex === b
                             ? 'bg-white'
                             : 'bg-neutral-700'
@@ -687,11 +687,11 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                     ))}
                   </div>
                   <div className="text-right">
-                    <div className="text-xs font-mono font-bold tabular-nums text-white leading-none">
+                    <div className="text-[11px] sm:text-xs font-mono font-bold tabular-nums text-white leading-none">
                       {effectiveBpm.toFixed(1)}{' '}
-                      <span className="text-[10px] font-normal text-neutral-400">BPM</span>
+                      <span className="text-[9px] sm:text-[10px] font-normal text-neutral-400">BPM</span>
                     </div>
-                    <div className="text-[10px] font-mono tabular-nums text-neutral-400 leading-none mt-0.5">
+                    <div className="text-[9px] sm:text-[10px] font-mono tabular-nums text-neutral-400 leading-none mt-0.5">
                       {pitchBend === -1
                         ? '▼ PITCH -6%'
                         : pitchBend === 1
@@ -710,7 +710,7 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                   }
                   aria-label="BPM +1 증가 (위 화살표)"
                   title="BPM +1 (↑ 화살표)"
-                  className="px-2 py-2 sm:py-1.5 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border-l border-white/10 font-mono text-xs font-bold text-neutral-200 transition-colors select-none"
+                  className="px-1.5 sm:px-2 py-1.5 hover:bg-neutral-800 active:bg-white active:text-neutral-950 border-l border-white/10 font-mono text-[11px] sm:text-xs font-bold text-neutral-200 transition-colors select-none"
                 >
                   +1
                 </button>
@@ -722,18 +722,18 @@ export const BoothHud: React.FC<BoothHudProps> = ({
                 onClick={() => setIsPinnedOpen((v) => !v)}
                 aria-expanded={showDetails}
                 aria-label="조명 패드 및 세부 설정 패널 열기/닫기"
-                className={`px-2.5 sm:p-2 py-2.5 sm:py-2 rounded-lg border text-xs font-semibold transition-colors flex items-center gap-1 shrink-0 ${
+                className={`px-2 sm:p-2 py-1.5 sm:py-2 rounded-md sm:rounded-lg border text-[11px] sm:text-xs font-semibold transition-colors flex items-center gap-0.5 sm:gap-1 shrink-0 ${
                   isPinnedOpen
                     ? 'bg-white text-neutral-950 border-white'
                     : 'bg-white/[0.05] hover:bg-white/[0.1] border-white/12 text-neutral-200'
                 }`}
               >
-                <Sliders className="w-4 h-4" />
+                <Sliders className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="lg:hidden">패드</span>
                 {showDetails ? (
-                  <ChevronDown className="w-3.5 h-3.5 lg:hidden" />
+                  <ChevronDown className="w-3 h-3 lg:hidden" />
                 ) : (
-                  <ChevronUp className="w-3.5 h-3.5 lg:hidden" />
+                  <ChevronUp className="w-3 h-3 lg:hidden" />
                 )}
               </button>
             </div>
