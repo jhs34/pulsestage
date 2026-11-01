@@ -1,0 +1,6 @@
+{
+  "name": "PULSE STAGE — DJ 비주얼 & 조명 컨트롤러",
+  "description": "교실 TV 및 DJ 부스용 전체화면 배경 비주얼(0~9), QWERTY 10단계 화이트 페이드 조명(Q~P), 스페이스바 스트로브, 실시간 BPM 비트매칭 컨트롤러",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
